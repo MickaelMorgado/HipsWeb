@@ -4,7 +4,6 @@
   width: 1px;
   top: 0;
   left: 0;
-  border: 5px solid orange;
   border-radius: 50%;
   z-index: 100000;
   transform: translate(-50%, -50%);
@@ -17,16 +16,23 @@
 
 .d-point--2 {
   top: 50%;
-  left: 15%;
+  left: 30%;
 }
 
 .d-point--3 {
   top: auto;
   left: auto;
+  bottom: 25%;
+  right: 20%;
+}
+
+.d-point--4 {
+  top: auto;
+  left: auto;
   bottom: 20%;
   right: 20%;
 }
-/**/
+/*
 #pos-animation {
   border: 1px solid lightblue;
   :after {
@@ -47,3 +53,8 @@
   stroke: red;
   stroke-width: 0.05;
 }
+
+.d-point {
+  border: 5px solid orange;
+}
+*/

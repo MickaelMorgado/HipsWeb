@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     CustomEase
   );
 
-  var debug = true;
+  var debug = false;
   var tl = gsap.timeline();
   var myTLProgress = 0;
   let path = elements.path;
@@ -17,25 +17,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let fromElement = elements.posArea;
   let toElement = elements.svg;
 
-  let firstPoint = MotionPathPlugin.getRelativePosition(
+  let anchors = [];
+
+  // Define an array of point elements
+  let pointElements = elements.posAnimationPoints;
+
+  // Iterate over the point elements
+  for (let i = 0; i < pointElements.length; i++) {
+    let relativePoint = MotionPathPlugin.getRelativePosition(
       elements.posAnimationSVGWrapper,
-      elements.posAnimationPoint1
-    ),
-    middlePoint = MotionPathPlugin.getRelativePosition(
-      elements.posAnimationSVGWrapper,
-      elements.posAnimationPoint2
-    ),
-    lastPoint = MotionPathPlugin.getRelativePosition(
-      elements.posAnimationSVGWrapper,
-      elements.posAnimationPoint3
+      pointElements[i]
     );
-
-  let anchors = [
-    { x: firstPoint.x, y: firstPoint.y },
-    { x: middlePoint.x, y: middlePoint.y },
-    { x: lastPoint.x, y: lastPoint.y },
-  ];
-
+    // Add the relative position to the anchors array
+    anchors.push({ x: relativePoint.x, y: relativePoint.y });
+  }
   let matrix = MotionPathPlugin.convertCoordinates(fromElement, toElement);
   let converted = anchors.map((p) => matrix.apply(p));
 

@@ -7,6 +7,7 @@ body {
 body {
   position: relative;
   font-family: "DIN Next LT Pro";
+  overflow-x: hidden;
 }
 
 header {
@@ -142,7 +143,7 @@ header {
 
 .pos-animation-idle {
   position: absolute;
-  top: 400px;
+  top: 350px;
   left: 50%;
   z-index: 1;
   transform: translate(-50%, -50%);
@@ -286,4 +287,23 @@ header {
   padding: 10px 20px;
   border-radius: 40px;
   background-image: linear-gradient(45deg, #bc24ff, #536fff);
+}
+
+/* Footer: */
+.footer-main {
+  color: #fff;
+  background-color: #0a1435;
+}
+
+.footer-main-top {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.footer-main-top-row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
 }

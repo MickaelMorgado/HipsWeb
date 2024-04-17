@@ -7,9 +7,9 @@ var elements = {
   posAnimationIdle: document.querySelector("#pos-animation-idle"),
   posArea: document.querySelector("#gsap-pos-area"),
   posAnimation: document.querySelector("#pos-animation"),
-  posAnimationPoint1: document.querySelector(".d-point--1"), // start point
-  posAnimationPoint2: document.querySelector(".d-point--2"), // middle point
-  posAnimationPoint3: document.querySelector(".d-point--3"), // end point
+  posAnimationPoints: document.querySelectorAll(
+    "#pos-animation-points .d-point"
+  ),
   posBlack: document.querySelector("#pos-black"),
   posBlack2: document.querySelector("#pos-black-2"),
   section2: document.querySelector("#section2"),
