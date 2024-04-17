@@ -9,27 +9,44 @@ document.addEventListener("DOMContentLoaded", (event) => {
     CustomEase
   );
 
+  var debug = false;
   var tl = gsap.timeline();
   var myTLProgress = 0;
+  let path = elements.path;
+  let svg = elements.svg;
+
+  // Fix Coordinates:
+  let fromElement = elements.posArea;
+  let toElement = elements.path;
+
+  let anchors = [];
+
+  // Define an array of point elements
+  let pointElements = elements.posAnimationPoints;
+
+  // Iterate over the point elements
+  for (let i = 0; i < pointElements.length; i++) {
+    let relativePoint = MotionPathPlugin.getRelativePosition(
+      elements.posAnimationSVGWrapper,
+      pointElements[i]
+    );
+    // Add the relative position to the anchors array
+    anchors.push({ x: relativePoint.x, y: relativePoint.y });
+  }
+  let matrix = MotionPathPlugin.convertCoordinates(fromElement, toElement);
+  let converted = anchors.map((p) => matrix.apply(p));
 
   // Creating a SVG path:
-  let anchors = [
-      { x: 50, y: 20 },
-      { x: 25, y: 40 },
-      { x: 80, y: 60 },
-      { x: 85, y: 65 },
-    ],
-    rawPath = MotionPathPlugin.arrayToRawPath(anchors, { curviness: 2 }),
-    path = elements.path,
-    svg = elements.svg;
+
+  let rawPath = MotionPathPlugin.arrayToRawPath(converted, { curviness: 2 });
 
   path.setAttribute("d", MotionPathPlugin.rawPathToString(rawPath));
 
-  // place the anchors as <circle> elements
-  for (let i = 0; i < anchors.length; i++) {
+  // place the converted points as <circle> elements
+  for (let i = 0; i < converted.length; i++) {
     createSVG("circle", svg, {
-      cx: anchors[i].x,
-      cy: anchors[i].y,
+      cx: converted[i].x,
+      cy: converted[i].y,
       r: 0.5,
       fill: debug ? "red" : "none",
     });

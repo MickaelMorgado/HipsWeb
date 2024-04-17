@@ -7,6 +7,7 @@ body {
 body {
   position: relative;
   font-family: "DIN Next LT Pro";
+  overflow-x: hidden;
 }
 
 header {
@@ -142,7 +143,7 @@ header {
 
 .pos-animation-idle {
   position: absolute;
-  top: 400px;
+  top: 350px;
   left: 50%;
   z-index: 1;
   transform: translate(-50%, -50%);
@@ -156,6 +157,11 @@ header {
   left: 0;
   width: 100%;
   z-index: 10000;
+}
+
+#pos-animation-svg svg {
+  width: 100%;
+  height: 100%;
 }
 
 .pos {
@@ -256,6 +262,7 @@ header {
   line-height: 38px;
   padding-top: 85px;
   font-size: 23px;
+  font-weight: 300;
   width: 100%;
   max-width: 550px;
 }
@@ -268,16 +275,21 @@ header {
   font-family: "DIN Next LT Pro";
   font-size: 44px;
   color: #4e6cff;
+  font-weight: 300;
 }
 
 .subtitle {
   font-weight: 400;
 }
 
-.btn {
+.custom-btn {
   color: white !important;
   text-transform: uppercase;
   padding: 10px 20px;
   border-radius: 40px;
   background-image: linear-gradient(45deg, #bc24ff, #536fff);
+}
+
+#section2 {
+  background-image: linear-gradient(5deg, #f8f9fb 84%, #fff 0);
 }
