@@ -1,0 +1,44 @@
+.d-point {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  top: 0;
+  left: 0;
+  border: 5px solid orange;
+  border-radius: 50%;
+  z-index: 100000;
+  transform: translate(-50%, -50%);
+}
+
+.d-point--1 {
+  top: 20%;
+  left: 50%;
+}
+
+.d-point--2 {
+  top: auto;
+  left: auto;
+  bottom: 20%;
+  right: 20%;
+}
+/**/
+#pos-animation {
+  border: 1px solid lightblue;
+  :after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    top: 50%;
+    left: 50%;
+    background-color: lightblue;
+    border-radius: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+#pos-animation-svg path {
+  stroke: red;
+  stroke-width: 0.05;
+}
