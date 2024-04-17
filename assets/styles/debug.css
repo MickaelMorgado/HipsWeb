@@ -16,6 +16,11 @@
 }
 
 .d-point--2 {
+  top: 50%;
+  left: 15%;
+}
+
+.d-point--3 {
   top: auto;
   left: auto;
   bottom: 20%;

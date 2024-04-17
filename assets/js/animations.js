@@ -16,33 +16,40 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // Fix Coordinates:
   let fromElement = elements.posArea;
   let toElement = elements.svg;
+
+  let firstPoint = MotionPathPlugin.getRelativePosition(
+      elements.posAnimationSVGWrapper,
+      elements.posAnimationPoint1
+    ),
+    middlePoint = MotionPathPlugin.getRelativePosition(
+      elements.posAnimationSVGWrapper,
+      elements.posAnimationPoint2
+    ),
+    lastPoint = MotionPathPlugin.getRelativePosition(
+      elements.posAnimationSVGWrapper,
+      elements.posAnimationPoint3
+    );
+
+  let anchors = [
+    { x: firstPoint.x, y: firstPoint.y },
+    { x: middlePoint.x, y: middlePoint.y },
+    { x: lastPoint.x, y: lastPoint.y },
+  ];
+
   let matrix = MotionPathPlugin.convertCoordinates(fromElement, toElement);
-  let p1 = matrix.apply({
-    x: getCoords(elements.posAnimationPoint1).x,
-    y: getCoords(elements.posAnimationPoint1).y,
-  });
-  // let p2 = matrix.apply({ x: 28, y: 40 });
-  let p3 = matrix.apply({
-    x: getCoords(elements.posAnimationPoint2).x,
-    y: getCoords(elements.posAnimationPoint2).y,
-  });
+  let converted = anchors.map((p) => matrix.apply(p));
 
   // Creating a SVG path:
-  let anchors = [
-    { x: p1.x, y: p1.y },
-    //{ x: 28, y: 40 },
-    //{ x: 80, y: 60 },
-    { x: p3.x, y: p3.y },
-  ];
-  let rawPath = MotionPathPlugin.arrayToRawPath(anchors, { curviness: 2 });
+
+  let rawPath = MotionPathPlugin.arrayToRawPath(converted, { curviness: 2 });
 
   path.setAttribute("d", MotionPathPlugin.rawPathToString(rawPath));
 
-  // place the anchors as <circle> elements
-  for (let i = 0; i < anchors.length; i++) {
+  // place the converted points as <circle> elements
+  for (let i = 0; i < converted.length; i++) {
     createSVG("circle", svg, {
-      cx: anchors[i].x,
-      cy: anchors[i].y,
+      cx: converted[i].x,
+      cy: converted[i].y,
       r: 0.5,
       fill: debug ? "red" : "none",
     });
