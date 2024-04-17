@@ -2,6 +2,8 @@ var elements = {
   body: document.querySelector("body"),
   banner: document.querySelector("#section0"),
   html: document.querySelector("html"),
+  posAnimationSVGWrapper: document.querySelector("#pos-animation-svg"),
+
   path: document.querySelector("#pos-animation-svg path"),
   posAnimationIdle: document.querySelector("#pos-animation-idle"),
   posArea: document.querySelector("#pos-area"),
