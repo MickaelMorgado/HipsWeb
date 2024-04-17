@@ -9,7 +9,7 @@ const getCoords = (elem) => {
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const frameStart = 143; // 133;
-  const frameCount = 226;
+  const frameCount = 300; // 226;
 
   let isFirstSectionScrolled = false;
   let isSecondSectionScrolled = false;
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset;
     const maxScrollTop = elements.html.scrollHeight - window.innerHeight;
-    const scrollFraction = (scrollTop / maxScrollTop) * 1.7;
+    const scrollFraction = (scrollTop / maxScrollTop) * 0.8; // * 1.7
     const frameIndex = Math.min(
       frameCount - 1,
       Math.ceil(scrollFraction * frameCount)

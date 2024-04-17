@@ -66,9 +66,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     return element;
   }
 
+  // Ease to control speed of vertical position progress:
   CustomEase.create(
-    "custom",
-    "M0,0 C0.306,0 0.175,0.4 0.353,0.4 0.945,0.4 0.354,1 1,1 "
+    "customEase",
+    "M0,0 C0.378,0 0.126,0.5 0.4,0.5 0.539,0.5 0.53,0.521 0.572,0.548 0.643,0.593 0.681,0.816 0.787,0.948 0.836,1.01 0.926,1 1,1 "
   );
 
   // Main POS animation:
@@ -76,9 +77,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     scrollTrigger: {
       trigger: elements.posArea,
       start: "500px center",
-      end: "1300px center",
+      end: "bottom center",
       scrub: 0.4,
-      //markers: true,
+      markers: false,
       onUpdate: (self) => {
         myTLProgress = self.progress;
       },
@@ -98,14 +99,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       gsap.set(elements.posAnimation, { scaleX: scale, scaleY: scale });
     },
-    ease: "custom",
+    ease: "customEase",
     immediateRender: false,
     /*
     onComplete: function () {
       // Once the animation is complete, reverse the scale back to 1
       tl.to(elements.posAnimation, {
         scale: 1,
-        //ease: "custom",
+        //ease: "customEase",
       });
     },
     */
