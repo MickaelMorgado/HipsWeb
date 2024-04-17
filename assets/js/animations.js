@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+  var debug = false;
+
   gsap.registerPlugin(
     ScrollTrigger,
     ScrollMagic,
@@ -7,34 +9,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
     CustomEase
   );
 
-  var debug = true;
   var tl = gsap.timeline();
   var myTLProgress = 0;
-  let path = elements.path;
-  let svg = elements.svg;
-
-  // Fix Coordinates:
-  let fromElement = elements.posArea;
-  let toElement = elements.svg;
-  let matrix = MotionPathPlugin.convertCoordinates(fromElement, toElement);
-  let p1 = matrix.apply({
-    x: getCoords(elements.posAnimationPoint1).x,
-    y: getCoords(elements.posAnimationPoint1).y,
-  });
-  // let p2 = matrix.apply({ x: 28, y: 40 });
-  let p3 = matrix.apply({
-    x: getCoords(elements.posAnimationPoint2).x,
-    y: getCoords(elements.posAnimationPoint2).y,
-  });
 
   // Creating a SVG path:
   let anchors = [
-    { x: p1.x, y: p1.y },
-    //{ x: 28, y: 40 },
-    //{ x: 80, y: 60 },
-    { x: p3.x, y: p3.y },
-  ];
-  let rawPath = MotionPathPlugin.arrayToRawPath(anchors, { curviness: 2 });
+      { x: 50, y: 20 },
+      { x: 25, y: 40 },
+      { x: 80, y: 60 },
+      { x: 85, y: 65 },
+    ],
+    rawPath = MotionPathPlugin.arrayToRawPath(anchors, { curviness: 2 }),
+    path = elements.path,
+    svg = elements.svg;
 
   path.setAttribute("d", MotionPathPlugin.rawPathToString(rawPath));
 
