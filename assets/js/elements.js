@@ -3,10 +3,9 @@ var elements = {
   banner: document.querySelector("#section0"),
   html: document.querySelector("html"),
   posAnimationSVGWrapper: document.querySelector("#pos-animation-svg"),
-
   path: document.querySelector("#pos-animation-svg path"),
   posAnimationIdle: document.querySelector("#pos-animation-idle"),
-  posArea: document.querySelector("#pos-area"),
+  posArea: document.querySelector("#gsap-pos-area"),
   posAnimation: document.querySelector("#pos-animation"),
   posAnimationPoints: document.querySelectorAll(
     "#pos-animation-points .d-point"
