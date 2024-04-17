@@ -1,3 +1,12 @@
+// Function to get coordinates of an element:
+const getCoords = (elem) => {
+  const box = elem.getBoundingClientRect();
+  return {
+    x: box.top + pageYOffset,
+    y: box.left + pageXOffset,
+  };
+};
+
 document.addEventListener("DOMContentLoaded", (event) => {
   const frameStart = 143; // 133;
   const frameCount = 226;
