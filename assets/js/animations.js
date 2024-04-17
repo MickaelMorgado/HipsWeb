@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   // Fix Coordinates:
   let fromElement = elements.posArea;
-  let toElement = elements.svg;
+  let toElement = elements.path;
 
   let anchors = [];
 
