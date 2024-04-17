@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-  var debug = false;
-
   gsap.registerPlugin(
     ScrollTrigger,
     ScrollMagic,
