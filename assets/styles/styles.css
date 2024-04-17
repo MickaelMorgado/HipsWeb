@@ -281,12 +281,16 @@ header {
   font-weight: 400;
 }
 
-.btn {
+.custom-btn {
   color: white !important;
   text-transform: uppercase;
   padding: 10px 20px;
   border-radius: 40px;
   background-image: linear-gradient(45deg, #bc24ff, #536fff);
+}
+
+#section2 {
+  background-image: linear-gradient(5deg, #f8f9fb 84%, #fff 0);
 }
 
 /* Footer: */
