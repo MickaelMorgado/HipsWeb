@@ -7,10 +7,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
     CustomEase
   );
 
-  var debug = true;
+  var debug = false;
   var tl = gsap.timeline();
   let path = elements.path;
   let svg = elements.svg;
+
+  // Adding some debug styles:
+  if (debug) {
+    elements.posAnimation.classList.add("d-pos-animation");
+    elements.posAnimationSVGWrapper.classList.add("d-pos-animation-svg");
+    elements.posAnimationPointWrapper.classList.add("d-point-debugger");
+  }
 
   // Fix Coordinates:
   let fromElement = elements.posArea;
@@ -102,6 +109,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           let interpolatedIndex = Math.ceil(
             gsap.utils.interpolate(0, 190, progress)
           );
+          console.log(interpolatedIndex);
           updateFrame(interpolatedIndex);
         }
       },

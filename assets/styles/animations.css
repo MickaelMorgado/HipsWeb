@@ -39,8 +39,7 @@
   right: 35%;
 }
 
-/**/
-#pos-animation {
+.d-pos-animation {
   border: 1px solid lightblue;
   :after {
     content: "";
@@ -56,12 +55,12 @@
   }
 }
 
-#pos-animation-svg path {
+.d-pos-animation-svg path {
   stroke: red;
   stroke-width: 0.05;
 }
 
-.d-point {
+.d-point-debugger .d-point {
   border: 5px solid orange;
 }
 
