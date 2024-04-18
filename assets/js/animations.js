@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     CustomEase
   );
 
-  var debug = false;
+  var debug = true;
   var tl = gsap.timeline();
   var myTLProgress = 0;
   let path = elements.path;
@@ -69,7 +69,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // Ease to control speed of vertical position progress:
   CustomEase.create(
     "customEase",
-    "M0,0 C0.378,0 0.126,0.5 0.4,0.5 0.539,0.5 0.53,0.521 0.572,0.548 0.643,0.593 0.681,0.816 0.787,0.948 0.836,1.01 0.926,1 1,1 "
+    "M0,0 C0.378,0 0.125,0.3 0.4,0.3 0.539,0.3 0.621,0.316 0.663,0.343 0.734,0.388 0.738,0.604 0.77,0.773 0.783,0.847 0.853,1 1,1 "
+  );
+  CustomEase.create(
+    "testEase",
+    "M0,0 C0,0 0.04,0 0.1,0.054 0.155,0.103 0.16,0.3 0.246,0.3 0.397,0.3 0.344,0.3 0.5,0.3 0.692,0.3 0.566,1 0.8,1 0.964,1 1,1 1,1 "
   );
 
   // Main POS animation:
@@ -77,11 +81,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
     scrollTrigger: {
       trigger: elements.posArea,
       start: "500px center",
-      end: "bottom center",
+      end: "90% center",
       scrub: 0.4,
-      markers: false,
+      // markers: true,
       onUpdate: (self) => {
         myTLProgress = self.progress;
+        let interpolatedIndex = Math.ceil(
+          gsap.utils.interpolate(0, 190, myTLProgress)
+        );
+        updateFrame(interpolatedIndex);
+        //console.log(interpolatedIndex);
       },
     },
     motionPath: {
@@ -94,12 +103,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
       if (myTLProgress < 0.5) {
         scale = 0.8 + myTLProgress * 1;
       } else {
-        scale = 1.2 - (myTLProgress - 0.5) * 1;
+        scale = 1.1 - (myTLProgress - 0.5) * 1;
       }
+
+      console.log(scale);
 
       gsap.set(elements.posAnimation, { scaleX: scale, scaleY: scale });
     },
-    ease: "customEase",
+    ease: "testEase",
     immediateRender: false,
     /*
     onComplete: function () {
@@ -113,6 +124,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   // Black POS:
+  /*
   tl.to(elements.posBlack2, {
     scrollTrigger: {
       trigger: elements.section2,
@@ -125,6 +137,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
     scale: 0.9,
     rotation: -5,
     duration: 5,
+  });
+  */
+
+  // Content Animations:
+  const contentElements = elements.contents;
+
+  contentElements.forEach((contentElement, index) => {
+    gsap.to(contentElement, {
+      x: "100%",
+      opacity: 1,
+      duration: 1,
+      scrollTrigger: {
+        trigger: contentElement.parentElement,
+        start: "-25% center",
+        end: "25% center",
+        scrub: 1,
+        id: `contentAnimation-${index}`,
+      },
+    });
   });
 
   // var scene = new ScrollMagic.Scene({

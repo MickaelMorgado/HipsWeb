@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const frames = document.querySelectorAll(".js-generated-frame");
 
   // Function to update the frame at a given index:
-  const updateFrame = (index) => {
+  window.updateFrame = (index) => {
     if (index >= frameCount - frameStart) {
       return;
     } else {
@@ -62,22 +62,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       elements.posAnimation.style.display = "none";
     }
 
-    if (!isFirstSectionScrolled && scrollFraction < 0.01) {
-      elements.posAnimation.classList.add("first-section");
-      isFirstSectionScrolled = true;
-    } else {
-      elements.posAnimation.classList.remove("first-section");
-    }
-
-    if (!isSecondSectionScrolled && scrollFraction > 0.3) {
-      elements.posAnimation.classList.add("second-section");
-      isSecondSectionScrolled = true;
-    } else {
-      elements.posAnimation.classList.remove("second-section");
-    }
-
+    /*
     requestAnimationFrame(() => {
       updateFrame(frameIndex);
     });
+    */
   });
 });
