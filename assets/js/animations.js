@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     CustomEase
   );
 
-  var debug = false;
+  // Debugs: -------------------------------------------------------------------
+  var debug = true;
   var tl = gsap.timeline();
   let path = elements.path;
   let svg = elements.svg;
@@ -18,6 +19,42 @@ document.addEventListener("DOMContentLoaded", (event) => {
     elements.posAnimationSVGWrapper.classList.add("d-pos-animation-svg");
     elements.posAnimationPointWrapper.classList.add("d-point-debugger");
   }
+
+  // Image Sequence Animation: ------------------------------------------------
+  const frameStart = 143; // 133;
+  const frameCount = 300; // 226;
+
+  // Function to generate and append frame elements
+  const generateFrames = () => {
+    const container = elements.posAnimation;
+
+    for (let i = frameStart; i <= frameCount; i++) {
+      const frame = document.createElement("div");
+      frame.classList.add("js-generated-frame");
+      frame.style.backgroundImage = `url('./assets/images/Render0099-10000${i}.png')`;
+      frame.style.visibility = "hidden";
+      container.appendChild(frame);
+    }
+  };
+
+  // Call the function to generate frames:
+  generateFrames();
+
+  // Get all frame elements:
+  const frames = document.querySelectorAll(".js-generated-frame");
+
+  // Function to update the frame at a given index:
+  window.updateFrame = (index) => {
+    if (index >= frameCount - frameStart) {
+      return;
+    } else {
+      frames.forEach((frame, idx) => {
+        frame.style.visibility = idx === index ? "visible" : "hidden"; // Show the frame at the given index, hide others
+      });
+    }
+  };
+
+  // GSAP Animation: ----------------------------------------------------------
 
   // Fix Coordinates:
   let fromElement = elements.posArea;
@@ -106,10 +143,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
           gsap.set(elements.posAnimation, { scale: scale });
 
           // FRAME ANIMATION:
+          let animationLength = frameCount - frameStart;
           let interpolatedIndex = Math.ceil(
-            gsap.utils.interpolate(0, 190, progress)
+            gsap.utils.interpolate(0, animationLength, progress)
           );
-          console.log(interpolatedIndex);
           updateFrame(interpolatedIndex);
         }
       },
