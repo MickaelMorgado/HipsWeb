@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const generateFrames = () => {
     const container = elements.posAnimation;
 
-    for (let i = frameStart; i < frameCount; i++) {
+    for (let i = frameStart; i <= frameCount; i++) {
       const frame = document.createElement("div");
       frame.classList.add("js-generated-frame");
       frame.style.backgroundImage = `url('./assets/images/Render0099-10000${i}.png')`;
@@ -47,12 +47,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // Animate frames based on scroll position:
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset;
-    const maxScrollTop = elements.html.scrollHeight - window.innerHeight;
-    const scrollFraction = (scrollTop / maxScrollTop) * 0.8; // * 1.7
-    const frameIndex = Math.min(
-      frameCount - 1,
-      Math.ceil(scrollFraction * frameCount)
-    );
 
     if (scrollTop > 0) {
       elements.posAnimationIdle.style.display = "none";
