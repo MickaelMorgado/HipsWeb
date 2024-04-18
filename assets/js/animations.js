@@ -8,10 +8,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   );
 
   // Debugs: -------------------------------------------------------------------
-  var debug = true;
-  var tl = gsap.timeline();
-  let path = elements.path;
-  let svg = elements.svg;
+  var debug = false;
 
   // Adding some debug styles:
   if (debug) {
@@ -22,13 +19,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   // Image Sequence Animation: ------------------------------------------------
   const frameStart = 143; // 133;
-  const frameCount = 300; // 226;
+  const frameEnd = 300; // 226;
+  const animationLength = frameEnd - frameStart;
+  var tl = gsap.timeline();
+  let path = elements.path;
+  let svg = elements.svg;
 
   // Function to generate and append frame elements
   const generateFrames = () => {
     const container = elements.posAnimation;
 
-    for (let i = frameStart; i <= frameCount; i++) {
+    for (let i = frameStart; i <= frameEnd; i++) {
       const frame = document.createElement("div");
       frame.classList.add("js-generated-frame");
       frame.style.backgroundImage = `url('./assets/images/Render0099-10000${i}.png')`;
@@ -44,8 +45,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const frames = document.querySelectorAll(".js-generated-frame");
 
   // Function to update the frame at a given index:
-  window.updateFrame = (index) => {
-    if (index >= frameCount - frameStart) {
+  const updateFrame = (index) => {
+    if (index >= animationLength) {
       return;
     } else {
       frames.forEach((frame, idx) => {
@@ -112,7 +113,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   );
   CustomEase.create(
     "newEase",
-    "M0,0 C0,0 0.039,0.001 0.058,0.021 0.084,0.049 0.068,0.145 0.119,0.146 0.244,0.146 0.159,0.3 0.267,0.3 0.418,0.3 0.344,0.3 0.5,0.3 0.692,0.3 0.566,1 0.8,1 0.964,1 1,1 1,1 "
+    "M0,0 C0,0 0.039,0.001 0.058,0.021 0.084,0.049 0.068,0.145 0.119,0.146 0.244,0.146 0.159,0.3 0.267,0.3 0.418,0.3 0.32,0.3 0.476,0.3 0.834,0.3 0.608,1 0.87,1 1.034,1 1,1 1,1 "
   );
   const easeScale = [0, 1, 0, 0, 1, 0, 0];
 
@@ -143,7 +144,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
           gsap.set(elements.posAnimation, { scale: scale });
 
           // FRAME ANIMATION:
-          let animationLength = frameCount - frameStart;
           let interpolatedIndex = Math.ceil(
             gsap.utils.interpolate(0, animationLength, progress)
           );
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       alignOrigin: [0.5, 0.5],
       reverse: true,
     },
-    ease: "newEase",
+    ease: "newEase", // The "ease" property seems to be related to timeline, so it can affect the MotionPath following speed but might not speed up the vertical progress from ScrollTrigger
     immediateRender: false,
   });
 
