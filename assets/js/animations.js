@@ -94,7 +94,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
             easeIndexFraction *
               (easeScale[easeIndexFloor + 1] - easeScale[easeIndexFloor]); // Interpolate between easing values
           const scale = minScale + easedProgress * (maxScale - minScale); // Interpolate between minScale and maxScale based on the eased progress
+
+          // SCALE ANIMATION:
           gsap.set(elements.posAnimation, { scale: scale });
+
+          // FRAME ANIMATION:
           let interpolatedIndex = Math.ceil(
             gsap.utils.interpolate(0, 190, progress)
           );
