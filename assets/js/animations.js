@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   var debug = true;
   var tl = gsap.timeline();
+  var tl2 = gsap.timeline();
   var myTLProgress = 0;
   let path = elements.path;
   let svg = elements.svg;
@@ -73,8 +74,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
   );
   CustomEase.create(
     "testEase",
-    "M0,0 C0,0 0.04,0 0.1,0.054 0.155,0.103 0.16,0.3 0.246,0.3 0.397,0.3 0.344,0.3 0.5,0.3 0.692,0.3 0.566,1 0.8,1 0.964,1 1,1 1,1 "
+    "M0,0 C0,0 0.039,0.001 0.058,0.021 0.084,0.049 0.068,0.145 0.119,0.146 0.244,0.146 0.159,0.3 0.267,0.3 0.418,0.3 0.344,0.3 0.5,0.3 0.692,0.3 0.566,1 0.8,1 0.964,1 1,1 1,1 "
   );
+  const easeScale = [0, 1, 0, 0, 1, 0, 0];
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
 
   // Main POS animation:
   tl.to(elements.posAnimation, {
@@ -85,12 +91,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
       scrub: 0.4,
       // markers: true,
       onUpdate: (self) => {
-        myTLProgress = self.progress;
-        let interpolatedIndex = Math.ceil(
-          gsap.utils.interpolate(0, 190, myTLProgress)
-        );
-        updateFrame(interpolatedIndex);
-        //console.log(interpolatedIndex);
+        const minScale = 0.8; // Minimum scale
+        const maxScale = 1.2; // Maximum scale
+        const progress = self.progress;
+        const easeIndex = progress * (easeScale.length - 1); // Calculate the index in the easeScale array
+        const easeIndexFloor = Math.floor(easeIndex);
+        const easeIndexFraction = easeIndex - easeIndexFloor; // Get the fractional part
+
+        // Check if easeIndexFloor is within the valid range
+        if (easeIndexFloor >= 0 && easeIndexFloor < easeScale.length - 1) {
+          const easedProgress =
+            easeScale[easeIndexFloor] +
+            easeIndexFraction *
+              (easeScale[easeIndexFloor + 1] - easeScale[easeIndexFloor]); // Interpolate between easing values
+          const scale = minScale + easedProgress * (maxScale - minScale); // Interpolate between minScale and maxScale based on the eased progress
+          gsap.set(elements.posAnimation, { scale: scale });
+          let interpolatedIndex = Math.ceil(
+            gsap.utils.interpolate(0, 190, progress)
+          );
+          updateFrame(interpolatedIndex);
+          console.log(scale);
+          //console.log(myTLProgress);
+        }
       },
     },
     motionPath: {
@@ -98,17 +120,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       align: path,
       alignOrigin: [0.5, 0.5],
       reverse: true,
-    },
-    onUpdate: function () {
-      if (myTLProgress < 0.5) {
-        scale = 0.8 + myTLProgress * 1;
-      } else {
-        scale = 1.1 - (myTLProgress - 0.5) * 1;
-      }
-
-      console.log(scale);
-
-      gsap.set(elements.posAnimation, { scaleX: scale, scaleY: scale });
     },
     ease: "testEase",
     immediateRender: false,
@@ -122,6 +133,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
     },
     */
   });
+
+  /*
+    // WORKING
+    tl2.to(elements.posAnimation, {
+      scrollTrigger: {
+        trigger: elements.posArea,
+        start: "top center",
+        end: "bottom center",
+        scrub: 0.4,
+        markers: true,
+        ease: "scaleEaseIn",
+        onUpdate: (self) => {
+          const progress = self.progress; // Get the scroll progress (0 to 1)
+          const easeIndex = progress * (easeScale.length - 1); // Calculate the index in the easeScale array
+          const easeIndexFloor = Math.floor(easeIndex);
+          const easeIndexFraction = easeIndex - easeIndexFloor; // Get the fractional part
+          const easedProgress =
+          easeScale[easeIndexFloor] +
+          easeIndexFraction *
+          (easeScale[easeIndexFloor + 1] - easeScale[easeIndexFloor]); // Interpolate between easing values
+          const minScale = 1; // Minimum scale
+          const maxScale = 2; // Maximum scale
+          const scale = minScale + easedProgress * (maxScale - minScale); // Interpolate between minScale and maxScale based on the eased progress
+          gsap.set(elements.posAnimation, { scale: scale });
+          console.log(scale);
+        },
+      },
+    });
+    */
 
   // Black POS:
   /*
