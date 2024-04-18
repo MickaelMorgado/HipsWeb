@@ -23,18 +23,20 @@
   top: auto;
   left: auto;
   bottom: 50%;
-  right: 20%;
+  left: 40%;
 }
 
 .d-point--4 {
   top: auto;
+  left: auto;
   bottom: 20%;
-  left: 20%;
+  right: 20%;
 }
 
 .d-point--5 {
   bottom: 12%;
-  left: 30%;
+  left: auto;
+  right: 30%;
   top: auto;
 }
 
