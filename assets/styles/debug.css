@@ -40,7 +40,6 @@
 }
 
 /*
-*/
 #pos-animation {
   border: 1px solid lightblue;
   :after {
@@ -65,7 +64,7 @@
 .d-point {
   border: 5px solid orange;
 }
-
+*/
 @media screen and (max-width: 1500px) {
   .d-point--3,
   .d-point--4 {

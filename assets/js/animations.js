@@ -7,10 +7,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     CustomEase
   );
 
-  var debug = true;
+  var debug = false;
   var tl = gsap.timeline();
-  var tl2 = gsap.timeline();
-  var myTLProgress = 0;
   let path = elements.path;
   let svg = elements.svg;
 
@@ -110,8 +108,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
             gsap.utils.interpolate(0, 190, progress)
           );
           updateFrame(interpolatedIndex);
-          console.log(scale);
-          //console.log(myTLProgress);
         }
       },
     },
@@ -123,15 +119,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     },
     ease: "testEase",
     immediateRender: false,
-    /*
-    onComplete: function () {
-      // Once the animation is complete, reverse the scale back to 1
-      tl.to(elements.posAnimation, {
-        scale: 1,
-        //ease: "customEase",
-      });
-    },
-    */
   });
 
   /*
