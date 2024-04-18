@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     CustomEase
   );
 
-  var debug = false;
+  var debug = true;
   var tl = gsap.timeline();
   let path = elements.path;
   let svg = elements.svg;

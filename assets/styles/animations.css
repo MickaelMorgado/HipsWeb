@@ -39,7 +39,7 @@
   right: 35%;
 }
 
-/*
+/**/
 #pos-animation {
   border: 1px solid lightblue;
   :after {
@@ -64,11 +64,21 @@
 .d-point {
   border: 5px solid orange;
 }
-*/
+
 @media screen and (max-width: 1500px) {
   .d-point--3,
   .d-point--4 {
     right: 0;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .d-point--2 {
+    top: 65%;
+    left: 65%;
+  }
+  .d-point--5 {
+    right: 20%;
   }
 }
 
