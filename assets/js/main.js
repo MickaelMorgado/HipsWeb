@@ -10,4 +10,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
       elements.posAnimation.style.display = "none";
     }
   });
+
+  // Remove Preloader:
+  setTimeout(() => {
+    elements.preloaderAnimation.classList.remove("preloader--active");
+  }, 3000);
 });

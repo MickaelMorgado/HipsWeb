@@ -1,3 +1,4 @@
+// TODO: use window.onload = function() { to wait for all images to load before
 document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(
     ScrollTrigger,
@@ -115,7 +116,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     "newEase",
     "M0,0 C0,0 0.051,0.001 0.07,0.021 0.096,0.049 0.105,0.146 0.157,0.146 0.2,0.146 0.255,0.148 0.28,0.16 0.334,0.184 0.309,0.3 0.38,0.3 0.531,0.3 0.36,0.3 0.516,0.3 0.874,0.3 0.608,1 0.87,1 1.034,1 1,1 1,1 "
   );
-  const easeScale = [0, 1, 0, 0, 1, 0, 0];
+  const easeScale = [0, 1, 0.4, 0.4, 1, 0.8, 0];
 
   // Main POS animation:
   tl.to(elements.posAnimation, {
@@ -125,7 +126,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       end: "90% center",
       scrub: 0.4,
       onUpdate: (self) => {
-        const minScale = 0.8; // Minimum scale
+        const minScale = 0.75; // Minimum scale
         const maxScale = 1.2; // Maximum scale
         const progress = self.progress;
         const easeIndex = progress * (easeScale.length - 1); // Calculate the index in the easeScale array
@@ -145,7 +146,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
           // FRAME ANIMATION:
           let interpolatedIndex = Math.ceil(
-            gsap.utils.interpolate(0, animationLength, progress)
+            gsap.utils.interpolate(0, animationLength, progress * 1.05)
           );
           updateFrame(interpolatedIndex);
         }
@@ -168,7 +169,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     gsap.to(contentElement, {
       x: "100%",
       opacity: 1,
-      duration: 1,
+      duration: 2,
       scrollTrigger: {
         trigger: contentElement.parentElement,
         start: "-25% center",
