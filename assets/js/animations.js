@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   );
   CustomEase.create(
     "newEase",
-    "M0,0 C0,0 0.039,0.001 0.058,0.021 0.084,0.049 0.068,0.145 0.119,0.146 0.244,0.146 0.159,0.3 0.267,0.3 0.418,0.3 0.32,0.3 0.476,0.3 0.834,0.3 0.608,1 0.87,1 1.034,1 1,1 1,1 "
+    "M0,0 C0,0 0.051,0.001 0.07,0.021 0.096,0.049 0.105,0.146 0.157,0.146 0.2,0.146 0.255,0.148 0.28,0.16 0.334,0.184 0.309,0.3 0.38,0.3 0.531,0.3 0.36,0.3 0.516,0.3 0.874,0.3 0.608,1 0.87,1 1.034,1 1,1 1,1 "
   );
   const easeScale = [0, 1, 0, 0, 1, 0, 0];
 
@@ -178,11 +178,4 @@ document.addEventListener("DOMContentLoaded", (event) => {
       },
     });
   });
-
-  // var scene = new ScrollMagic.Scene({
-  //   duration: h,
-  //   triggerHook: 0.2,
-  // })
-  //   .setTween(tl)
-  //   .addTo(controller);
 });

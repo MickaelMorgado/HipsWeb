@@ -1,25 +1,27 @@
 <html>
   <head>
     <title>Hips</title>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+    <script src="./assets/js/vendor/jquery.min.js"></script>
+    <script src="./assets/js/vendor/gsap.min.js"></script>
+    <script src="./assets/js/vendor/ScrollMagic.min.js"></script>
+    <script src="./assets/js/vendor/animation.gsap.min.js"></script>
+    <script src="./assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="./assets/js/vendor/Observer.min.js"></script>
+    <script src="./assets/js/vendor/MotionPathPlugin.min.js"></script>
+    <script src="./assets/js/vendor/CustomEase.min.js"></script>
 
     <!--
       <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MotionPathHelper.min.js?v=46"></script>
       more at: https://codepen.io/fr3d3ric/pen/NWWJoMg
     -->
-    <link rel="stylesheet" href="https://static.hips.com/fontawesome/css/all.css">
-    <link rel="stylesheet" href="https://cdn.hips.com/assets/frontend20/bootstrap/bootstrap-a3ace479d6ea71428ed6c7c33966c56620228ef1f9de1edd5b281b6ba892e3c6.css">
-    <link rel="stylesheet" href="https://cdn.hips.com/assets/frontend20/main-829f1bb4abc4136588e3238276a852668416f52483649f13acf9c101addba092.css">
+    <link rel="stylesheet" href="./assets/styles/vendor/all.css">
+    <link rel="stylesheet" href="./assets/styles/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/styles/vendor/main.min.css">
     <link rel="stylesheet" href="./assets/styles/animations.css">
     <link rel="stylesheet" href="./assets/styles/styles.css">
   </head>
   <body class="page-home">
+    <div id="smooth-content">
     <header>
       <div class="navbar-main-container">
         <img src="https://cdn.hips.com/assets/logotypes/redux/color/hips-aa696dfa4c50892d2ae12a1c4aebaeb96bcbb8f169c706bc0cd7382f03cdaa8d.svg" alt="Hips" width="84px">
@@ -39,7 +41,7 @@
         </div>
         <div class="navbar-main-content-btn topnav">
           <div class="cart-wrapper" data-totalitems="0" id="cart">
-            <a class="navbar-main-btn btn btn-outline-primary" href="/pt/checkout">Shop Now</a>
+            <a class="navbar-main-btn btn btn-outline-primary" href="https://hips.com/pt/store">Shop Now</a>
           </div>
           <a class="navbar-main-btn btn btn-primary" href="https://dashboard.hips.com/users/sign_in">Sign In</a>
           <button class="btn navbar-main-toggler" data-open-navbar-main="" type="button">
@@ -188,12 +190,14 @@
         </div>
       </div>
     </footer>
+  </div>
     <script src="./assets/js/elements.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/animations.js"></script>
   </body>
 
-  <div id="viewportResolution" style="position: fixed; bottom: 0; z-index: 1000; background: white;"></div>
+  <script src="./assets/js/vendor/HipsHome.js"></script>
+  <!--div id="viewportResolution" style="position: fixed; bottom: 0; z-index: 1000; background: white;"></div>
   <script>
     // Function to update viewport resolution
     function updateViewportResolution() {
@@ -211,6 +215,6 @@
 
     // Event listener to update viewport resolution on window resize
     window.addEventListener("resize", updateViewportResolution);
-  </script>
+  </script-->
 
 </html>
