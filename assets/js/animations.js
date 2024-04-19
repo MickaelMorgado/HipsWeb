@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(
     ScrollTrigger,
     ScrollMagic,
+    ScrollSmoother,
     Observer,
     MotionPathPlugin,
     CustomEase
@@ -105,6 +106,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     container.appendChild(element);
     return element;
   }
+
+  // ScrollSmoother:
+  let smoother = ScrollSmoother.create({
+    smooth: 2,
+  });
 
   // Ease to control speed of vertical position progress:
   CustomEase.create(
