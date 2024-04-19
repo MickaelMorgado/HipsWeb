@@ -178,11 +178,4 @@ document.addEventListener("DOMContentLoaded", (event) => {
       },
     });
   });
-
-  // var scene = new ScrollMagic.Scene({
-  //   duration: h,
-  //   triggerHook: 0.2,
-  // })
-  //   .setTween(tl)
-  //   .addTo(controller);
 });
