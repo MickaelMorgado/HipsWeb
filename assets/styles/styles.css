@@ -2,12 +2,20 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 62.5%; /* 10px to simplify rem calculations */
+  line-height: 62.5%;
 }
 
 body {
   position: relative;
   font-family: "DIN Next LT Pro";
-  overflow-x: hidden;
+  width: 100%;
+  font-size: 1.6rem; /* 16px */
+  line-height: 1.6rem;
 }
 
 header {
@@ -158,8 +166,17 @@ header {
   height: 600px;
 }
 
+.pos-animation-points {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 #gsap-pos-area {
   position: relative;
+  width: 100%;
 }
 
 #pos-animation-svg {
@@ -328,9 +345,9 @@ header {
 }
 
 .caption-title {
-  font-size: 44px;
+  font-size: 4.4rem;
   font-weight: 300;
-  line-height: 52.8px;
+  line-height: 5.28rem;
   color: #ffffff;
   font-family: "DIN Next LT Pro";
 }
@@ -342,24 +359,29 @@ header {
 }
 
 .content {
-  line-height: 38px;
   padding-top: 150px;
   padding-bottom: 150px;
-  font-size: 23px;
+  font-size: 2.3rem;
   font-weight: 300;
+  line-height: 3.8rem;
   width: 100%;
   max-width: 550px;
 
   opacity: 0;
 }
 
+.content--1 {
+  margin-left: auto;
+}
+
+.content--1,
 .content--2 {
-  margin-left: -50%;
+  transform: translate(-100%, 0);
 }
 
 .title {
   font-family: "DIN Next LT Pro";
-  font-size: 44px;
+  font-size: 4.4rem;
   color: #4e6cff;
   font-weight: 300;
 }
@@ -385,6 +407,10 @@ header {
   padding-bottom: 100px;
 }
 
+.section-advantage-subheading {
+  line-height: 3.8rem;
+}
+
 /* Footer: */
 .footer-main {
   color: #fff;
@@ -402,4 +428,27 @@ header {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
+}
+
+@media screen and (max-width: 991px) {
+  /*
+  .caption-title {
+    font-size: calc(4.4rem - 20%);
+    line-height: calc(5.28rem - 20%);
+  }
+
+  .content {
+    width: 50%;
+    font-size: calc(2.3rem - 20%);
+    line-height: calc(3.8rem - 20%);
+  }
+  */
+
+  .content,
+  .container {
+    width: 100%;
+  }
+  .content--1 {
+    margin-left: 0;
+  }
 }

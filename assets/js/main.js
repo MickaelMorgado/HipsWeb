@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset;
 
-    if (scrollTop > 0) {
+    if (scrollTop > 0 && window.innerWidth > settings.mobileBreakpoint) {
       elements.posAnimationIdle.style.display = "none";
       elements.posAnimation.style.display = "block";
     } else {

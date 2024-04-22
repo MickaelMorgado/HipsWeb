@@ -19,4 +19,8 @@ var elements = {
   svg: document.querySelector("#pos-animation-svg svg"),
 };
 
+settings = {
+  mobileBreakpoint: 992,
+};
+
 window.elements = elements;
