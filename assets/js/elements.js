@@ -16,6 +16,7 @@ var elements = {
   posBlack2: document.querySelector("#pos-black-2"),
   preloaderAnimation: document.querySelector("#preloader-animation"),
   section2: document.querySelector("#section2"),
+  smoothContent: document.querySelector("#smooth-content"),
   svg: document.querySelector("#pos-animation-svg svg"),
 };
 

@@ -310,6 +310,10 @@ header {
 
 /* Website content: */
 
+#smooth-content {
+  position: relative;
+}
+
 .caption {
   position: absolute;
   top: auto;
